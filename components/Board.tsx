@@ -1,16 +1,17 @@
 import styles from "../styles/Board.module.css";
 import Square from "./Square";
 
-export default function Board() {
+type Props = {
+  squares: string[];
+  onClick(i: number): void;
+};
+export default function Board({ squares, onClick }: Props) {
   function renderSquare(i: number) {
-    return <Square value={i} />;
+    return <Square value={squares[i]} onClick={() => onClick(i)} />;
   }
-
-  const status = "Next player: X";
 
   return (
     <div>
-      <div className={styles.status}>{status}</div>
       <div className={styles.boardRow}>
         {renderSquare(0)}
         {renderSquare(1)}
